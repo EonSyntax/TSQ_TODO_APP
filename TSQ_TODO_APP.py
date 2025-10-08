@@ -7,5 +7,7 @@ root.title("TSQ TODO APP")
 root.geometry("400x400")
 root.configure(bg="#399adb")
 
+#entry path
+
 
 root.mainloop()
