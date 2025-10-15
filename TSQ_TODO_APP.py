@@ -33,6 +33,27 @@ def save_task():
         tasks = listbox.get(0, tk.END)
         print("Saving:", tasks)
 
+#Function for mark as done button
+def mark_as_done():
+    selected = listbox.curselection()
+    if selected:
+        task = listbox.get(selected)
+        task.endswith("Done")
+        listbox.delete(selected)
+        listbox.insert(selected, "✓" "|" " "+ task)
+    else:
+        mbox.showwarning("Warning", "Please select a task to mark as done.")
+
+#Function for Edit Task button
+def edit_task():
+    selected = listbox.curselection()
+    if selected:
+        task = listbox.get(selected)
+        entry.delete(0, tk.END)
+        entry.insert(0, task)
+        listbox.delete(selected)
+    else:
+        mbox.showwarning("Warning", "Please select a task to edit.")
 
 button=tk.Button(root,text="Add Task",width=10,bg="#2ecc71",fg="#ecf0f1",font=("Arial",10),command=add_task)
 button.grid(row=0,column=1,padx=6)
@@ -43,13 +64,14 @@ listbox.place(x=18, y=60)
 
 
 #buttons
-button1=tk.Button(root, text="Mark as done",bg="blue",fg="white",font=("Arial",10))
-button1.place(x=50, y=320)
+button1=tk.Button(root, text="Mark as done",bg="blue",fg="white",font=("Arial",10),command=mark_as_done)
+button1.place(x=10, y=320)
 button2=tk.Button(root, text="Delete",bg="red",fg="white")
-button2.place(x=170, y=320)
+button2.place(x=130, y=320)
 button4=tk.Button(root, text="Clear all",bg="orange",fg="white")
-button4.place(x=250, y=320)
-
+button4.place(x=210, y=320)
+button5=tk.Button(root, text="Edit Task",bg="black",fg="white",command=edit_task)
+button5.place(x=300, y=320)
 
 
 root.mainloop()
