@@ -55,6 +55,49 @@ def edit_task():
     else:
         mbox.showwarning("Warning", "Please select a task to edit.")
 
+# #FUNCTION FOR DELETE AND CLEAR ALL
+# def delete_task():
+#     access = listbox.curselection() 
+    
+#     if access:
+        
+#         for i in reversed(access):
+#             task = listbox.get(i)
+#             listbox.delete(i)
+#         entry.delete(0, tk.END)
+#         entry.insert(0, task)
+#         mbox.showinfo("Info", f"You delete: {task}")
+#     else:
+#         mbox.showwarning("Warning", "Please select a task to delete")
+def delete_task():
+    access = listbox.curselection()
+    
+    if access:
+        for i in reversed(access):
+            listbox.delete(i)
+        # Clear the entry completely
+        entry.delete(0, tk.END)
+        mbox.showinfo("Info", "Deleted selected task(s)")
+    else:
+        mbox.showwarning("Warning", "Please select a task to delete")
+
+
+
+#FUNCTION FOR DELETE AND CLEAR ALL
+def clear_task():
+    clear = listbox.curselection()
+    if clear:
+        index = clear[0]
+        task = listbox.get(index)
+        entry.delete(0, tk.END)
+        entry.insert(0, task)
+        listbox.selection_clear(0, tk.END)
+    else:
+        mbox.showwarning("Warning", "Please select a task to clear.")
+
+
+
+
 button=tk.Button(root,text="Add Task",width=10,bg="#2ecc71",fg="#ecf0f1",font=("Arial",10),command=add_task)
 button.grid(row=0,column=1,padx=6)
 
@@ -66,9 +109,9 @@ listbox.place(x=18, y=60)
 #buttons
 button1=tk.Button(root, text="Mark as done",bg="blue",fg="white",font=("Arial",10),command=mark_as_done)
 button1.place(x=10, y=320)
-button2=tk.Button(root, text="Delete",bg="red",fg="white")
+button2=tk.Button(root, text="Delete",bg="red",fg="white", command=delete_task)
 button2.place(x=130, y=320)
-button4=tk.Button(root, text="Clear all",bg="orange",fg="white")
+button4=tk.Button(root, text="Clear all",bg="orange",fg="white",command=clear_task)
 button4.place(x=210, y=320)
 button5=tk.Button(root, text="Edit Task",bg="black",fg="white",command=edit_task)
 button5.place(x=300, y=320)
