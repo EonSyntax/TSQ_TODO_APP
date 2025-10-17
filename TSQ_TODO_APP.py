@@ -55,39 +55,27 @@ def edit_task():
     else:
         mbox.showwarning("Warning", "Please select a task to edit.")
 
-# #FUNCTION FOR DELETE AND CLEAR ALL
-# def delete_task():
-#     access = listbox.curselection() 
-    
-#     if access:
-        
-#         for i in reversed(access):
-#             task = listbox.get(i)
-#             listbox.delete(i)
-#         entry.delete(0, tk.END)
-#         entry.insert(0, task)
-#         mbox.showinfo("Info", f"You delete: {task}")
-#     else:
-#         mbox.showwarning("Warning", "Please select a task to delete")
+#FUNCTION FOR DELETE AND CLEAR ALL
 def delete_task():
-    access = listbox.curselection()
+    access = listbox.curselection() 
     
     if access:
+        
         for i in reversed(access):
+            task = listbox.get(i)
             listbox.delete(i)
-        # Clear the entry completely
         entry.delete(0, tk.END)
-        mbox.showinfo("Info", "Deleted selected task(s)")
+        entry.insert(0, task)
+        mbox.showinfo("Info", f"You delete: {task}")
     else:
         mbox.showwarning("Warning", "Please select a task to delete")
 
 
-
-#FUNCTION FOR DELETE AND CLEAR ALL
+#FUNCTION FOR CLEAR ALL
 def clear_task():
     clear = listbox.curselection()
     if clear:
-        index = clear[0]
+        index= clear[0]
         task = listbox.get(index)
         entry.delete(0, tk.END)
         entry.insert(0, task)
