@@ -1,6 +1,7 @@
 import tkinter as tk
 import tkinter.messagebox as mbox
 
+
 # MAIN WINDOW FRAME
 root = tk.Tk()
 root.title("TSQ TODO APP")
@@ -83,9 +84,7 @@ def clear_task():
     else:
         mbox.showwarning("Warning", "Please select a task to clear.")
 
-
-
-
+#BUTTON PATH
 button=tk.Button(root,text="Add Task",width=10,bg="#2ecc71",fg="#ecf0f1",font=("Arial",10),command=add_task)
 button.grid(row=0,column=1,padx=6)
 
@@ -104,5 +103,11 @@ button4.place(x=210, y=320)
 button5=tk.Button(root, text="Edit Task",bg="black",fg="white",command=edit_task)
 button5.place(x=300, y=320)
 
+# Save before closing the app
+def on_close():
+    save_task()
+    root.destroy()
+
+root.protocol("WM_DELETE_WINDOW", on_close)
 
 root.mainloop()
